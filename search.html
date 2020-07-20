@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Поиск вакансий</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+    </head>
+    
+    <body>
+        
+        <div id="page-wrapper">
+            <header id="header">
+                <div id="column-1">
+                <img class="Logo" src="images/logo.png" alt="Logo">
+                </div>
+                <div id="main-col-2">
+                <div id="column-2">
+                     <div class="mainMenu">
+                       <input type="button" id="menu-button" name="menu-button" value="ГЛАВНОЕ МЕНЮ">
+                     </div>
+                     <ul id=headerUl>
+                      <li>
+                       <input type="button" id="menu-itemOne" name="buttonOne" value="Соискателю" title="Соискателю">
+                       <div id="submenuOne">
+                       <ul>
+                       <li><a id="item-1" href="findWork.html" title="Найти работу">Найти работу</a></li>
+                       <li><a id="item-2" href="postResume.html" title="Разместить резюме">Разместить резюме</a></li>
+                       <li><a id="item-3" href="advices.html" title="Советы соискателю">Советы соискателю</a></li>
+                       <li><a id="item-4" href="archive.html" title="Архив вакансий">Архив вакансий</a></li>
+                       </ul>
+                       </div>
+                      </li>
+                      <li>
+                        <input type="button" id="menu-itemTwo" name="buttonTwo" value="Работодателю" title="Работодателю">
+                        <div id="submenuTwo">
+                        <ul>
+                        <li><a id="item-5" href="addVacancy.html" title="Добавить вакансию">Добавить вакансию</a></li>
+                        <li><a id="item-6" href="findResume.html" title="Поиск резюме">Поиск резюме</a></li>
+                        <li><a id="item-7" href="shareResume.html" title="Рассылки резюме">Рассылки резюме</a></li>
+                        <li><a id="item-8" href="publicationRules.html" title="Правила размещения">Правила размещения</a></li>
+                        </ul>
+                        </div>
+                      </li> 
+                      </ul>
+                      
+                <!--<ul>
+                    <li id="li1"><a href="#">СОИСКАТЕЛЮ</a></li>
+                    <li id="li2"><a href="#">РАБОТОДАТЕЛЮ</a></li>
+                    <li id="li3"><a href="#">РАЗМЕСТИТЕ РЕЗЮМЕ</a></li>
+                </ul>-->
+                </div> 
+                </div>    
+                <div id="column-3">
+                <ul class="nav">
+                    <li id="li4"><a href="#">ВОЙТИ</a></li>
+                    <li id="li5"><!--<a href="#">ENG</a>
+                        <ul class="submenu1">
+                            <li><a href=#>УКР</a></li>
+                            <li><a href=#>РУС</a></li>
+                        </ul>-->
+                        <select id="lang-button" name="lang-button">
+                         <option value="#rus">Рус</option>
+                         <option value="#ukr">Укр</option>
+                        </select>
+                    </li>
+                </ul>
+                </div>    
+            </header>
+            
+         <div id="telo">
+            <form id="form">
+            <h5 id="h5">ОТПРАВКА РЕЗЮМЕ</h5>
+            <div id="columns1">    
+            <div id="columns">
+            <div id="col-1">
+                <h5>Выберете резюме</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+                <p><input type="checkbox" name="a" value="Yes">Согласен с правилами</p>
+            </div>
+            <div id="col-2">
+                <h5>Выбрать сопроводительное письмо</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+            </div>
+            </div> 
+                </div>
+             <div id="sub1">   
+               <input id="sub" type="submit" title="Отправить резюме">
+             </div>      
+            </form>
+             
+         </div>  
+            
+            <footer id="footer2">
+              
+                <div id="column-10">
+                    <div id="Logo">
+                        <img src="images/Logo.png" alt="Logo">
+                    </div>
+                    <div id="Tele-Mail">   
+                        <ul>
+                          <li><img class="tel-mail" src="images/icon/Tele.png"></li>
+                          <li>(809) 704 1782</li> 
+                        </ul>
+                        <ul>
+                          <li><img class="tel-mail" src="images/icon/Mail.png"></li>
+                          <li>contacts@ukr.net</li>     
+                        </ul>
+                    </div>  
+                    <div id="twitter-facebook">  
+                        <a href="#"><img src="images/icon/Facebook.png"></a> 
+                        <a href="#"><img src="images/icon/Twitter.png"></a>
+                    </div>
+                </div> 
+                <div id="column-11">
+                <p class="bold">О нас</p>    
+                <ul>
+                    <li><a href="#">О сайте</a></li>
+                    <li><a href="#">Карта сайта</a></li>
+                    <li><a href="#">Как пользоваться сайтом</a></li>
+                    <li><a href="#">Прайс-лист</a></li>
+                    <li><a href="#">Брендированные страницы</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                </ul>
+                </div>
+                <div id="column-12">
+                <p class="bold">Соискателям</p>    
+                <ul>
+                    <li><a href="#">Создать резюме</a></li>
+                    <li><a href="#">Найти вакансии</a></li>
+                    <li><a href="#">Расширенный поиск</a></li>
+                    <li><a href="#">Примеры резюме</a></li>
+                    <li><a href="#">Правила размещения</a></li>
+                </ul>
+                </div>
+                <div id="column-13">
+                <p class="bold">Роботодателям</p>    
+                <ul>
+                    <li><a href="#">Зарегистрироваться</a></li>
+                    <li><a href="#">Разместить вакансию</a></li>
+                    <li><a href="#">Найти сотрудников</a></li>
+                    <li><a href="#">Поиск по профессиям</a></li>
+                    <li><a href="#">Правила размещения</a></li>
+                </ul>
+                </div>
+               
+            </footer>
+            
+        </div>
+    </body>
+</html>

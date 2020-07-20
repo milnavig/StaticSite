@@ -1,0 +1,774 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Поиск вакансий</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+        
+        <script>
+        console.clear();
+        function sort_price() {
+           var nodeList = document.querySelectorAll('.content');
+           var itemsArray = [];
+           var parent = nodeList[0].parentNode;
+        for (var i = 0; i < nodeList.length; i++) {    
+           itemsArray.push(parent.removeChild(nodeList[i]));
+        }
+        itemsArray.sort(function(nodeA, nodeB) {
+           var textA = nodeA.querySelector('.title .column-9 .price').textContent;
+           var textB = nodeB.querySelector('.title .column-9 .price').textContent;
+           var numberA = parseInt(textA);
+           var numberB = parseInt(textB);
+           if (numberA < numberB) return -1;
+           if (numberA > numberB) return 1;
+           return 0;
+        })
+        .forEach(function(node) {
+           parent.appendChild(node)
+        });
+        }
+        </script>
+        
+        <script>
+        console.clear();
+        function sort_title() {
+           var nodeList = document.querySelectorAll('.content');
+           var itemsArray = [];
+           var parent = nodeList[0].parentNode;
+        for (var i = 0; i < nodeList.length; i++) {    
+           itemsArray.push(parent.removeChild(nodeList[i]));
+        }
+        itemsArray.sort(function(nodeA, nodeB) {
+           var textA = nodeA.querySelector('.title .column-8 h4').textContent;
+           var textB = nodeB.querySelector('.title .column-8 h4').textContent;
+           var numberA = textA;
+           var numberB = textB;
+           if (numberA < numberB) return -1;
+           if (numberA > numberB) return 1;
+           return 0;
+        })
+        .forEach(function(node) {
+           parent.appendChild(node)
+        });
+        }
+        </script>
+
+        <script>
+        console.clear();
+        function sort_time() {
+           var nodeList = document.querySelectorAll('.content');
+           var itemsArray = [];
+           var parent = nodeList[0].parentNode;
+        for (var i = 0; i < nodeList.length; i++) {    
+           itemsArray.push(parent.removeChild(nodeList[i]));
+        }
+        itemsArray.sort(function(nodeA, nodeB) {
+           var textA = nodeA.querySelector('.end-post ul .date').getAttribute('data-date');
+           var textB = nodeB.querySelector('.end-post ul .date').getAttribute('data-date');
+           var numberA = new Date(textA);
+           var numberB = new Date(textB);
+           if (numberA < numberB) return -1;
+           if (numberA > numberB) return 1;
+           return 0;
+        })
+        .forEach(function(node) {
+           parent.appendChild(node)
+        });
+        }
+        </script>        
+        
+        <script>
+        console.clear();
+        function sort_city() {
+           var nodeList = document.querySelectorAll('.content');
+           var itemsArray = [];
+           var parent = nodeList[0].parentNode;
+        for (var i = 0; i < nodeList.length; i++) {    
+           itemsArray.push(parent.removeChild(nodeList[i]));
+        }
+        itemsArray.sort(function(nodeA, nodeB) {
+           var textA = nodeA.querySelector('.second-title ul .city').textContent;
+           var textB = nodeB.querySelector('.second-title ul .city').textContent;
+           var numberA = textA;
+           var numberB = textB;
+           if (numberA < numberB) return -1;
+           if (numberA > numberB) return 1;
+           return 0;
+        })
+        .forEach(function(node) {
+           parent.appendChild(node)
+        });
+        }
+        </script>
+        
+        <script>
+        console.clear();
+        function sort_razd() {
+           var nodeList = document.querySelectorAll('.content');
+           var itemsArray = [];
+           var parent = nodeList[0].parentNode;
+        for (var i = 0; i < nodeList.length; i++) {    
+           itemsArray.push(parent.removeChild(nodeList[i]));
+        }
+        itemsArray.sort(function(nodeA, nodeB) {
+           var textA = nodeA.querySelector('.second-title ul .razd').textContent;
+           var textB = nodeB.querySelector('.second-title ul .razd').textContent;
+           var numberA = textA;
+           var numberB = textB;
+           if (numberA < numberB) return -1;
+           if (numberA > numberB) return 1;
+           return 0;
+        })
+        .forEach(function(node) {
+           parent.appendChild(node)
+        });
+        }
+        </script>
+        
+        <script>
+            function delete_text() { 
+            /*var articleDiv = document.querySelector(".text")[1];
+            // находим узел, который будем удалять - первый параграф
+            var removableNode = document.querySelectorAll(".text p")[0]; 
+            var articleDiv1 = document.querySelector(".second-title");
+            // находим узел, который будем удалять - первый параграф
+            var removableNode1 = document.querySelectorAll(".second-title ul")[0];
+            // удаляем узел
+            articleDiv.removeChild(removableNode);
+        
+            // удаляем узел
+            articleDiv1.removeChild(removableNode1);*/
+            $(".text").empty();    
+            $(".second-title ul").empty(); 
+            }     
+        </script> 
+        
+        <script>
+    $(document).ready(function(){
+        //Скрыть PopUp при загрузке страницы    
+        PopUpHide();
+    });
+    //Функция отображения PopUp
+    function PopUpShow(){
+        $("#pop_up").show();
+    }
+    //Функция скрытия PopUp
+    function PopUpHide(){
+        $("#pop_up").hide();
+    }
+</script>
+    
+    </head>
+    
+    <body>
+        
+     <!--   <dialog>
+           <div id="telo1">
+            <form id="form">
+            <h5 id="h5">ОТПРАВКА РЕЗЮМЕ</h5>
+            <div id="columns1">    
+            <div id="columns">
+            <div id="col-1">
+                <h5>Выберете резюме</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+                <p><input type="checkbox" name="a" value="Yes">Согласен с правилами</p>
+            </div>
+            <div id="col-2">
+                <h5>Выбрать сопроводительное письмо</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+            </div>
+            </div> 
+                </div>
+             <div id="sub1">   
+               <input id="sub" type="submit" title="Отправить резюме">
+             </div>      
+            </form>
+             
+         </div>  
+         <button id="close">Закрыть</button>
+         </dialog>-->
+        <div id="pop_up">
+        <div id="telo1">
+            <form id="form">
+            <h5 id="h5">ОТПРАВКА РЕЗЮМЕ</h5>
+            <div id="columns1">    
+            <div id="columns">
+            <div id="col-1">
+                <h5>Выберете резюме</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+                <p><input type="checkbox" name="a" value="Yes">Согласен с правилами</p>
+            </div>
+            <div id="col-2">
+                <h5>Выбрать сопроводительное письмо</h5>
+                <select>
+                <option>Название резюме</option>
+                <option>Резюме 1</option>
+                <option>Резюме 2</option>
+                <option>Резюме 3</option>    
+                </select>
+            </div>
+            </div> 
+                </div>
+             <div id="sub1">   
+               <input id="sub" type="submit" title="Отправить резюме">
+             </div>      
+            </form>
+             
+         </div>  
+         <button onclick="PopUpHide()" id="close">Закрыть</button>
+        </div>
+        
+        
+        <div id="page-wrapper">
+              <header id="header">
+                <div id="column-1">
+                <img class="Logo" src="images/logo.png" alt="Logo">
+                </div>
+                <div id="main-col-2">
+                <div id="column-2">
+                     <div class="mainMenu">
+                       <input type="button" id="menu-button" name="menu-button" value="ГЛАВНОЕ МЕНЮ">
+                     </div>
+                     <ul id=headerUl>
+                      <li>
+                       <input type="button" id="menu-itemOne" name="buttonOne" value="Соискателю" title="Соискателю">
+                       <div id="submenuOne">
+                       <ul>
+                       <li><a id="item-1" href="findWork.html" title="Найти работу">Найти работу</a></li>
+                       <li><a id="item-2" href="postResume.html" title="Разместить резюме">Разместить резюме</a></li>
+                       <li><a id="item-3" href="advices.html" title="Советы соискателю">Советы соискателю</a></li>
+                       <li><a id="item-4" href="archive.html" title="Архив вакансий">Архив вакансий</a></li>
+                       </ul>
+                       </div>
+                      </li>
+                      <li>
+                        <input type="button" id="menu-itemTwo" name="buttonTwo" value="Работодателю" title="Работодателю">
+                        <div id="submenuTwo">
+                        <ul>
+                        <li><a id="item-5" href="addVacancy.html" title="Добавить вакансию">Добавить вакансию</a></li>
+                        <li><a id="item-6" href="findResume.html" title="Поиск резюме">Поиск резюме</a></li>
+                        <li><a id="item-7" href="shareResume.html" title="Рассылки резюме">Рассылки резюме</a></li>
+                        <li><a id="item-8" href="publicationRules.html" title="Правила размещения">Правила размещения</a></li>
+                        </ul>
+                        </div>
+                      </li> 
+                      </ul>
+                      
+                <!--<ul>
+                    <li id="li1"><a href="#">СОИСКАТЕЛЮ</a></li>
+                    <li id="li2"><a href="#">РАБОТОДАТЕЛЮ</a></li>
+                    <li id="li3"><a href="#">РАЗМЕСТИТЕ РЕЗЮМЕ</a></li>
+                </ul>-->
+                </div> 
+                </div>    
+                <div id="column-3">
+                <ul class="nav">
+                    <li id="li4"><a href="#">ВОЙТИ</a></li>
+                    <li id="li5"><!--<a href="#">ENG</a>
+                        <ul class="submenu1">
+                            <li><a href=#>УКР</a></li>
+                            <li><a href=#>РУС</a></li>
+                        </ul>-->
+                        <select id="lang-button" name="lang-button">
+                         <option value="#rus">Рус</option>
+                         <option value="#ukr">Укр</option>
+                        </select>
+                    </li>
+                </ul>
+                </div>    
+            </header>
+        
+            <div id="search">
+                <div id="main-form">
+                <div id="main-search">
+                    <img id="photo1" src="images/icon/search.png">
+                    <input type="search" id="input1" placeholder="Введите запрос (например: водитель)" name="description">   
+                    <img id="photo2" src="images/icon/city.png">
+                    <input type="search" id="input2" placeholder="Введите город" name="description">
+                    <input onclick="PopUpShow()" type="submit" title="Найти">
+                    <!--<input id="show" type="submit" title="Найти">-->
+                    <!--<input onclick="window.open('search.html','test', 'width=1200,height=500,status=no,resizable=no,top=200,left=0'); return false;" type="submit" title="Найти">-->
+                </div> 
+                <div id="second-search">
+                    <div id="column-4">
+                        <img id="photo3" src="images/icon/add.png">
+                        <img id="photo4" src="images/icon/delete.png">
+                    </div>
+                    <div id="column-5">
+                        <input type="search" id="input3" placeholder="Название агента" name="description">
+                    </div>    
+                </div> 
+                </div>
+            </div> 
+                 
+            <div id="advanced-search">
+                <a href="#">Расширеный поиск</a>
+            </div>
+        
+            
+            
+                     <div id="sort">
+                          <ul>
+                            <li class="bold">Сортировать по:</li>
+                            <li><a onclick="sort_time()" href="#">Времени добавления</a></li>
+                            <li><a onclick="sort_title()" href="#">Названию вакансии</a></li>
+                            <li><a onclick="sort_price()" href="#">Зарплате</a></li>
+                            <li><a onclick="sort_razd()" href="#">Разделам</a></li>
+                            <li><a onclick="sort_city()" href="#">Городам</a></li>
+                          </ul>
+                     </div>
+            
+                     <div id="second-sort">
+                           <div id="column-6">
+                                <p>12 500 вакансий</p>
+                           </div>   
+                           <div id="column-7">
+                                <ul>
+                                   <li><a onclick="append_text()" href="#">С описанием</a></li>
+                                   <li>|</li>
+                                   <li><a onclick="delete_text()" href="#">Только заголовки</a></li>
+                                </ul>
+                            </div>    
+                     </div>
+            
+                
+                <div id="left-sidebar">
+                    <div class="news">
+                     <div class="content">
+                         
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Представник Uber із залучення водіїв</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">900$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>УБЕР УКРАЇНА</li>
+                                    <li class="city">КИЇВ</li>
+                                    <li class="razd">БЕЗ ОПЫТА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>
+                             </div>
+                             
+                             <div class="text">
+                             <p>Ми шукаємо активних людей на роботу або підробіток у зв'язку з швидким зростанням компанії. Якщо ви - просто студент, який бажає заробляти хороші гроші, чи вже працюєте торговим представником/мерчендайзером/ в будь-якій суміжній галузі - вам буде цікава наша робота.
+Uber був заснований в 2009 році під назвою UberCab — Гаретом Грампом (співзасновником компанії StumbleUpon), та Тревісом Каланіком, який на той час продав свій стартап Red Swoosh за 19 мільйонів доларів 2007 року. Назва «Uber» — посилання на загальне (дещо сленгове) слово «uber», яке означає «найвищий» або «супер», і має походження з німецького слова über, що означає «вище».</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-08-18">18.08.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                         
+                  <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Грузчик - кладовщик в ресторан</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">600$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>WANTED</li>
+                                    <li class="city">ОДЕССА</li>
+                                    <li class="razd">ОПЫТ ОТ 1 ГОДА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>     
+                             </div>
+                             
+                             <div class="text">
+                             <p>Один из лидеров рынка в сфере бизнес-обучения «Бизнес-Конструктор» ищет менеджера по продажам.
+За 4 года штат компании вырос от 2 до 120 человек, были открыты офисы в Киеве и Казахстане, обучение в компании прошли более 8000 собственников бизнеса. В структуру «Бизнес-Конструктор» входят независимые направления: Консалтинговая компания, рекрутинговая компания Wanted и Business Lifestyle.В настоящее время компания предоставляет 15 видов учебных программ для предпринимателей, топ-менеджеров, HR-директоров, директоров по продажам.
+Мы расширяем штат - и готовы забрать лучших экспертов отрасли в наши ряды. Предлагаем попробовать свои силы в конкурсе на вакансию менеджеров по продажам. Основные требования к кандидату - ориентированность на результат, коммуникабельность и максимализм.
+Система финансовой мотивации состоит из ставки и бонусной части.</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-17">17.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                  <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Экономист / Финансовый контролер</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">400$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>BEEPER</li>
+                                    <li class="city">ХАРЬКОВ</li>
+                                    <li class="razd">БЕЗ ОПЫТА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>
+                             </div>
+                             
+                             <div class="text">
+                             <p>Более 20 лет BEEPER работает на рынке аутсорсинговых контактных центров, оказывая услуги справочных служб, горячих линий, проведения опросов и телемаркетинга.
+На сегодня под единым брендом BEEPER работает 6 операторских центров, 1700 рабочих мест, более 3000 сотрудников. Общий объем партнерских проектов - более 600.
+Мы работаем с ведущими отечественными и зарубежными компаниями.</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-08-17">17.07.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                    <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Оператор входящей линии</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">900$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>BINOTEL</li>
+                                    <li class="city">ЛЬВОВ</li>
+                                    <li class="razd">ОПЫТ ОТ 1 ГОДА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>
+                             </div>
+                             
+                             <div class="text">
+                             <p>Binotel - это ведущая компания, лидер по разработке IP-телефонии в Украине. Мы телефонизируем офисы любых видов бизнеса с помощью виртуальной АТС, даем клиентам набор эффективных бизнес-инструментов, которые помогают повышать доходы.
+Наша компания сотрудничает более чем с 6000 клиентами в Украине и по всему миру. Но мы никогда не стоим на месте! Мы живём технологиями, вдохновляем своим примером и помогаем нашим клиентам делать успешные шаги на пути к успеху. Мы постоянно развиваемся и предлагаем тебе развиваться с нами!</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-19">19.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                  <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Главный специалист отдела поддержки</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">700$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>UNIQA</li>
+                                    <li class="city">ДНЕПР</li>
+                                    <li class="razd">БЕЗ ОПЫТА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>     
+                             </div>
+                             
+                             <div class="text">
+                             <p>Австрийская страховая компания «UNIQA» -лидер страхового рынка Украины, входящая в состав крупнейшей страховой группы Европы UNIQA Group, в связи с расширением, приглашает на работу Главного специалиста отдела поддержки ИТ бизнес-систем</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-16">16.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                  <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Оператор Call-centre</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">300$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>ВОЛЯ</li>
+                                    <li class="city">ЛУЦК</li>
+                                    <li class="razd">ОПЫТ ОТ 1 ГОДА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>
+                             </div>
+                             
+                             <div class="text">
+                             <p>ВОЛЯ - лідер цифрових розваг і одна з найбільших телекомунікаційних компаній в країні!
+Більше 15 років на ринку. 2 300 співробітників. Представництва в 33 містах України.
+Уже двічі підтвердила статус Лідера в національній премії «Вибір року» в 2015 і 2016 роках.</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-18">18.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                  <div class="content">
+                             <div class="title">
+                                 <div class="column-8">
+                                    <h4>Курьер, инспектор, осмотрщик</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">500$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>БІЗНЕС</li>
+                                    <li class="city">НИКОЛАЕВ</li>
+                                    <li class="razd">БЕЗ ОПЫТА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>    
+                             </div>
+                             
+                             <div class="text">
+                             <p>Финансовая компания "Бізнес Позика" работает на рынке финансовых услуг для малого и среднего бизнеса. В команду департамента продаж проводится набор курьеров, инспекторов-осмоторщиков. По сути, это «глаза» департамента продаж.</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-20">20.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                
+                  <div class="content">
+                             <div class="title">
+                                    <div class="column-8">
+                                    <h4>Сварщик (полуавтомат)</h4>
+                                    </div>
+                                    <div class="column-9">
+                                    <p class="price">200$</p>
+                                    </div>
+                             </div>
+                
+                             <div class="second-title">
+                                 <ul>
+                                    <li>ПРАКТИКА</li>
+                                    <li class="city">КИЇВ</li>
+                                    <li class="razd">ОПЫТ ОТ 1 ГОДА</li>
+                                    <li>ПОЛНАЯ ЗАНЯТОСТЬ</li>
+                                 </ul>     
+                             </div>
+                             
+                             <div class="text">
+                             <p>На производственном предприятии НПО «Практика» открыта вакансия Сварщик на (полуавтомат).
+Производство автомобилей спец. назначения. Работа в районе М. «Академгородок» ул. Малинская.
+З/П 8-12000 грн.</p>
+                              </div>
+                                 
+                              <div class="end-post">
+                                     <ul>
+                                      <li><a href="#">Далее</a></li>
+                                      <li class="date" data-date="2017-09-10">10.09.17</li>
+                                     </ul>
+                              </div>
+                  </div>
+                    
+                    </div>
+       
+                              <div id="scroll-bar">
+                                  
+                                      <ul>
+                                        <li><a href="#"><img class="right-left" src="images/icon/Left.png"></a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li class="li-none1"><a href="#">2</a></li>
+                                        <li class="li-none1"><a href="#">3</a></li>
+                                        <li class="li-none1"><a href="#">4</a></li>
+                                        <li class="li-none1"><a href="#">5</a></li>
+                                        <li class="li-none1"><a href="#">6</a></li>
+                                        <li class="li-none1"><a href="#">7</a></li>
+                                        <li class="li-none1"><a href="#">8</a></li>
+                                        <li id="li-none"><a href="#">9</a></li>
+                                        <li>...</li>
+                                        <li><a href="#">20</a></li>
+                                        <li><a href="#"><img class="right-left" src="images/icon/Right.png"></a></li>
+                                      </ul>
+                              </div>
+                </div>
+            
+            </div>    
+            
+            
+            <div id="right-sidebar">
+            
+            </div>
+            
+            <footer id="footer">
+                <div id="ftr">
+                <div id="column-10">
+                    <div id="Foot-logo">
+                        <img class="Logo" src="images/Logo.png" alt="Logo">
+                    </div>
+                    <div id="Tele-Mail">   
+                        <ul>
+                          <li><img class="tel-mail" src="images/icon/Tele.png"></li>
+                          <li>(809) 704 1782</li> 
+                        </ul>
+                        <ul>
+                          <li><img class="tel-mail" src="images/icon/Mail.png"></li>
+                          <li>contacts@ukr.net</li>     
+                        </ul>
+                    </div>  
+                    <div id="twitter-facebook">  
+                        <a href="#"><img src="images/icon/Facebook.png"></a> 
+                        <a href="#"><img src="images/icon/Twitter.png"></a>
+                    </div>
+                </div> 
+                <div id="column-11">
+                <div class="p">    
+                <p class="bold">О нас</p>
+                </div>
+                <ul>
+                    <li><a href="#">О сайте</a></li>
+                    <li><a href="#">Карта сайта</a></li>
+                    <li><a href="#">Как пользоваться сайтом</a></li>
+                    <li><a href="#">Прайс-лист</a></li>
+                    <li><a href="#">Брендированные страницы</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                </ul>
+                </div>
+                <div id="column-12">
+                <div class="p">    
+                <p class="bold">Соискателям</p>
+                </div>    
+                <ul>
+                    <li><a href="#">Создать резюме</a></li>
+                    <li><a href="#">Найти вакансии</a></li>
+                    <li><a href="#">Расширенный поиск</a></li>
+                    <li><a href="#">Примеры резюме</a></li>
+                    <li><a href="#">Правила размещения</a></li>
+                </ul>
+                </div>
+                <div id="column-13">
+                <div class="p">    
+                <p class="bold">Роботодателям</p>
+                </div>    
+                <ul>
+                    <li><a href="#">Зарегистрироваться</a></li>
+                    <li><a href="#">Разместить вакансию</a></li>
+                    <li><a href="#">Найти сотрудников</a></li>
+                    <li><a href="#">Поиск по профессиям</a></li>
+                    <li><a href="#">Правила размещения</a></li>
+                </ul>
+                </div>
+              </div> 
+            </footer>
+            
+        
+    </body>
+    
+       <!-- <script type = text/javascript>
+            var dialog = document.querySelector('dialog');
+            document.querySelector('#show').onclick = function() {
+            dialog.showModal();
+            };
+            document.querySelector('#close').onclick = function() {
+            dialog.close();
+            };
+    </script> -->   
+    
+    <script>
+        var clickMenu = true;
+        var clickToShowOne = true;
+        
+        var clickToShowTwo = true;
+        document.getElementById("headerUl").style.display="none";        
+
+        document.getElementById("menu-button").onclick=function(){
+        if(clickMenu==true){
+        document.getElementById("headerUl").style.display="flex";
+        clickMenu = false;
+        }
+        else {
+        document.getElementById("headerUl").style.display="none";
+        clickMenu = true;
+        }
+        }
+
+        document.getElementById("menu-itemOne").onclick=function(){
+        if(clickToShowOne==true){
+        document.getElementById("submenuOne").style.display="block";
+        clickToShowOne = false;
+        }
+        else {
+        document.getElementById("submenuOne").style.display="none";
+        clickToShowOne = true;
+        }
+        }
+
+        document.getElementById("menu-itemTwo").onclick=function(){
+        if(clickToShowTwo==true){
+        document.getElementById("submenuTwo").style.display="block";
+        clickToShowTwo = false;
+        }
+        else {
+        document.getElementById("submenuTwo").style.display="none";
+        clickToShowTwo = true;
+        }
+        } 
+    </script>
+    
+    <script>
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $("#headerUl"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            div.hide(); // скрываем его
+        }
+    });
+    </script>    
+    
+    <script>
+        document.getElementById("lang-button").onchange=function() {
+        document.location=this.options[this.selectedIndex].value;
+        }
+    </script>
+    
+</html>
